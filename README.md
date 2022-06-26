@@ -33,10 +33,10 @@ This is a set of API for a social network that uses a MongoDB database so that t
 - THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
 
 ## Walkthrough Videos:
-[User Routes]()  
-[Friend Routes]()  
-[Thought Routes]()  
-[Reaction Routes]()  
+[User Routes](https://drive.google.com/file/d/1xFxkQ3yB6gZjSOIgwHlV5bpvLmOGG0ZZ/view)  
+[Friend Routes](https://drive.google.com/file/d/1Or_MC1uYT2-UChfaRGJknkQRBNcKmcmZ/view)  
+[Thought Routes](https://drive.google.com/file/d/1w-S9a1efc0-F1TJ2E23MD0vSi6HrO44S/view)  
+[Reaction Routes](https://drive.google.com/file/d/1NtgnCt_NAdHwiWlO6RjSQ959Us-9n00T/view)  
 
 ## Installation:
 This repo is not to be deployed, if you wanted to, you could by doing the following:  

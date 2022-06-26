@@ -29,18 +29,14 @@ const UserSchema = new Schema({
     toJSON: {
         // virtuals is a mongoose option to include virtuals
         virtuals: true,
-        // getters is a mongoose option to include getters
-        getters: true
     },
-    // prevent virtual from creating dublicate of _id as 'id'
+    // prevent virtual from creating duplicate of _id as 'id'
     id: false
 });
 
-// virtual is a mongoose middleware to define virtuals
-UserSchema.virtual('friendCount').get(function() {
-    // returns the length of the friends array
+UserSchema.virtual('friendCount').get(function () {
     return this.friends.length;
-})
+});
 
 // create the User model using the UserSchema
 const User = model('User', UserSchema);

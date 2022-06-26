@@ -119,61 +119,38 @@ const userController = {
             })
     },
 
-    addFriend({
-        params
-    }, res) {
-        // $addToSet will add the friend to the array if it doesn't already exist
-        User.findOneAndUpdate({
-                _id: params.id
-            }, {
-                $addToSet: {
-                    friends: params.friendsId
-                }
-            }, {
-                new: true
-            })
-            .then(dbUserData => {
-                if (!dbUserData) {
-                    res.status(404).json({
-                        message: 'No user found with this id! in add friend route'
-                    });
-                    return;
-                }
-                res.json(dbUserData);
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            })
-    },
+    // /api/users/:userid/fiends/:friendId
+  addFriend({ params }, res) {
+    User.findOneAndUpdate(
+      { _id: params.userId },
+      { $push: { friends: params.friendId } },
+      { new: true }
+    )
+      .then((dbUserData) => {
+        if (!dbUserData) {
+          res.status(404).json({ message: 'No user found with this id' });
+          return;
+        }
+        res.json(dbUserData);
+      })
+      .catch((err) => res.status(400).json(err));
+  },
 
-    removeFriend({
-        params
-    }, res) {
-        // $pull will remove the friend from the array if it exists
-        User.findOneAndUpdate({
-                _id: params.id
-            }, {
-                $pull: {
-                    friends: params.friendsId
-                }
-            }, {
-                new: true
-            })
-            .then(dbUserData => {
-                if (!dbUserData) {
-                    res.status(404).json({
-                        message: 'No user found with this id! in remove friend route'
-                    });
-                    return;
-                }
-                res.json(dbUserData);
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            })
-    }
-}
+  deleteFriend({ params }, res) {
+    User.findOneAndUpdate(
+      { _id: params.userId },
+      { $pull: { friends: params.friendId } },
+      { new: true }
+    )
+      .then((dbUserData) => {
+        if (!dbUserData) {
+          res.status(404).json({ message: 'No user found with this id' });
+          return;
+        }
+        res.json(dbUserData);
+      })
+      .catch((err) => res.status(400).json(err));
+  }
+};
 
 module.exports = userController;
